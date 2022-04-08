@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useState } from 'react';
 import Axios from "axios";
 import {
@@ -9,6 +10,8 @@ import {
 
 export default function Home() {
 =======
+=======
+>>>>>>> e03eb0d2e26902fa859e3d1b133ec67553bcfdd6
 import '../styles/App.css';
 import React, { useState } from 'react';
 import Axios from "axios";
@@ -32,6 +35,55 @@ import {
 const RecipeComponent = (props) => {
   const [popUp, setPopUp] = useState(false);
   const { recipeObj } = props;
+<<<<<<< HEAD
+=======
+  return (
+    <>
+      <Dialog open={popUp}>
+        <DialogTitle>Ingredients</DialogTitle>
+        <DialogContent>
+          <table>
+            <tbody>
+              {recipeObj.ingredients.map((ingredientObj) => (
+                <tr>
+                  <td>{ingredientObj.text}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </DialogContent>
+        <DialogActions>
+          <SeeMoreText onClick={() => setPopUp("")}>Close</SeeMoreText>
+        </DialogActions>
+      </Dialog>
+      <RecipeContainer>
+        <CoverImage src={recipeObj.image} />
+        <RecipeName>{recipeObj.label}</RecipeName>
+        <IngredientsText onClick={() => setPopUp(true)}>Ingredients</IngredientsText>
+        <SeeMoreText onClick={() => window.open(recipeObj.url)}>See complete Recipe</SeeMoreText>
+      </RecipeContainer>
+    </>
+  );
+};
+function Home() {
+
+  const [timeoutId, updateTimeoutId] = useState();
+  const [reciptList, updateReciptList] = useState([]);
+
+  const fetchRecipe = async (searchString) => {
+    const response = await Axios.get(
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${searchString}&app_id=${process.env.REACT_APP_APP_ID}&app_key=${process.env.REACT_APP_APP_KEY}&random=true`
+    );
+    updateReciptList(response.data.hits);
+  };
+
+  const onTextChange = (event) => {
+    clearTimeout(timeoutId);
+    const timeout = setTimeout(() => fetchRecipe(event.target.value), 1000);
+    updateTimeoutId(timeout);
+  };
+
+>>>>>>> e03eb0d2e26902fa859e3d1b133ec67553bcfdd6
   return (
     <>
       <Dialog open={popUp}>
@@ -92,6 +144,9 @@ function Home() {
     <div className="home">
       <h1>Home Page</h1>
       <img src="/search-icon.svg" />
+<<<<<<< HEAD
+>>>>>>> e03eb0d2e26902fa859e3d1b133ec67553bcfdd6
+=======
 >>>>>>> e03eb0d2e26902fa859e3d1b133ec67553bcfdd6
       <input placeholder="Search Recipe" onChange={onTextChange} />
       <RecipeListContainer>
