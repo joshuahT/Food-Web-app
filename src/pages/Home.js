@@ -14,7 +14,7 @@ import {
   IngredientsText,
   SeeMoreText,
   Placeholder
-} from "../components/recipeComponent";
+} from "../components/RecipeComponent";
 
 
 

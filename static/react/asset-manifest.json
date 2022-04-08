@@ -1,33 +1,14 @@
 {
   "files": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "main.css": "/static/css/main.24bae191.css",
-    "main.js": "/static/js/main.d860a87e.js",
+    "main.css": "/static/css/main.c48574ed.css",
+    "main.js": "/static/js/main.b524c955.js",
     "static/media/food-app-icon.png": "/static/media/food-app-icon.833504553d11ce293dee.png",
     "index.html": "/index.html",
-    "main.24bae191.css.map": "/static/css/main.24bae191.css.map",
-    "main.d860a87e.js.map": "/static/js/main.d860a87e.js.map"
+    "main.c48574ed.css.map": "/static/css/main.c48574ed.css.map",
+    "main.b524c955.js.map": "/static/js/main.b524c955.js.map"
   },
   "entrypoints": [
-    "static/css/main.24bae191.css",
-    "static/js/main.d860a87e.js"
-=======
-=======
->>>>>>> e03eb0d2e26902fa859e3d1b133ec67553bcfdd6
-    "main.css": "/static/react/static/css/main.980fd2ca.css",
-    "main.js": "/static/react/static/js/main.6b2d4758.js",
-    "static/media/food-app-icon.png": "/static/react/static/media/food-app-icon.833504553d11ce293dee.png",
-    "index.html": "/static/react/index.html",
-    "main.980fd2ca.css.map": "/static/react/static/css/main.980fd2ca.css.map",
-    "main.6b2d4758.js.map": "/static/react/static/js/main.6b2d4758.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.980fd2ca.css",
-    "static/js/main.6b2d4758.js"
-<<<<<<< HEAD
->>>>>>> e03eb0d2e26902fa859e3d1b133ec67553bcfdd6
-=======
->>>>>>> e03eb0d2e26902fa859e3d1b133ec67553bcfdd6
+    "static/css/main.c48574ed.css",
+    "static/js/main.b524c955.js"
   ]
 }
