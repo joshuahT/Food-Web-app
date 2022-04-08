@@ -12,6 +12,7 @@ export default function Navigation() {
       <Nav>
         <Nav.Link href="/profile">Profile</Nav.Link>
         <Nav.Link href="/recepies">Recepies</Nav.Link>
+        <Nav.Link href="/logout">Logout</Nav.Link>
       </Nav>
     </Navbar>
   )
