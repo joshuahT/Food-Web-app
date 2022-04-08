@@ -15,7 +15,7 @@ from models import db, User, recipes, recipes_reviews, save
 
 load_dotenv(find_dotenv())
 
-app = flask.Flask(__name__, static_folder= "./build/static" )
+app = flask.Flask(__name__, static_folder="./build/static")
 
 # set up a separate route to serve the index.html file generated
 # by create-react-app/npm run build.
@@ -41,9 +41,19 @@ def index():
     weight = current_user.weight
     age = current_user.age
 
-    DATA = {"user_id": user_id, "name": name, "img": img, "height": height, "weight": weight, "age": age}
+    DATA = {
+        "user_id": user_id,
+        "name": name,
+        "img": img,
+        "height": height,
+        "weight": weight,
+        "age": age,
+    }
     data = json.dumps(DATA)
-    return flask.render_template("index.html", data=data,)
+    return flask.render_template(
+        "index.html",
+        data=data,
+    )
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
@@ -166,6 +176,7 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
+
 @app.route("/user")
 def user():
     user_id = str(current_user.user_id)
@@ -174,9 +185,17 @@ def user():
     height = current_user.height
     weight = current_user.weight
     age = current_user.age
-    DATA = {"user_id": user_id, "name": name, "img": img, "height": height, "weight": weight, "age": age}
+    DATA = {
+        "user_id": user_id,
+        "name": name,
+        "img": img,
+        "height": height,
+        "weight": weight,
+        "age": age,
+    }
     data = json.dumps(DATA)
     return data
+
 
 @app.errorhandler(404)
 def not_found(e):
@@ -184,7 +203,6 @@ def not_found(e):
         return flask.render_template("index.html")
     print(e)
     return flask.render_template("index.html")
-
 
 
 app.register_blueprint(bp)
