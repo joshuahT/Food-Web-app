@@ -101,14 +101,15 @@ class LoginForm(FlaskForm):
 
 @app.route("/")
 def redirectreact():
-    if user_logged_in:
+    if current_user.is_authenticated:
         return render_template("index.html")
+    return render_template("home.html")
 
 
 @app.route("/home")
 def home():
     return render_template(
-        "index.html",
+        "home.html",
     )
 
 

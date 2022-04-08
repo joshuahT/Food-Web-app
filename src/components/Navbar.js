@@ -11,7 +11,7 @@ export default function Navigation() {
       </Navbar.Brand>
       <Nav>
         <Nav.Link href="/profile">Profile</Nav.Link>
-        <Nav.Link href="/recepies">Recepies</Nav.Link>
+        <Nav.Link href="/recipes">Recipe</Nav.Link>
         <Nav.Link href="/logout">Logout</Nav.Link>
       </Nav>
     </Navbar>

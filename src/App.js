@@ -1,4 +1,4 @@
-import Nav from './components/Navbar';
+import Navigation from './components/Navbar';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.js';
 import Profile from './pages/Profile.js';
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Nav />
+      <Navigation />
       <div className='content'>
         <Routes>
           <Route path="profile" element={
@@ -19,7 +19,7 @@ function App() {
               <Profile />
             </UserContextProvider>
           } />
-          <Route path="recepies" element={<Recepies />} />
+          <Route path="recipies" element={<Recepies />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
