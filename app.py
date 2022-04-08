@@ -4,7 +4,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask_login import LoginManager, user_logged_in
 from flask_wtf import FlaskForm
 from dotenv import find_dotenv, load_dotenv
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
@@ -49,6 +49,8 @@ def index():
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+APP_ID = os.getenv("APP_ID")
+APP_KEY = os.getenv("APP_KEY")
 
 db.init_app(app)
 with app.app_context():
@@ -98,6 +100,11 @@ class LoginForm(FlaskForm):
 
 
 @app.route("/")
+def redirectreact():
+    if user_logged_in:
+        return render_template("index.html")
+
+
 @app.route("/home")
 def home():
     return render_template(
@@ -147,6 +154,7 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get("next")
             return flask.render_template("index.html")
+            # return flask.render_template("search.html")
         else:
             flash("Login Unsuccessful. Please check email and password", "danger")
     return render_template("login.html", title="Login", form=form)
