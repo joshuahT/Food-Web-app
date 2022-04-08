@@ -3,7 +3,7 @@ import flask
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask_login import LoginManager, user_logged_in
 from flask_wtf import FlaskForm
 from dotenv import find_dotenv, load_dotenv
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
@@ -86,6 +86,11 @@ class LoginForm(FlaskForm):
 
 
 @app.route("/")
+def redirectreact():
+    if user_logged_in:
+        return render_template("index.html")
+
+
 @app.route("/home")
 def home():
     return render_template(
