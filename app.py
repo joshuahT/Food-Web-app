@@ -2,6 +2,7 @@ import os
 import flask
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import json
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_wtf import FlaskForm
@@ -14,7 +15,7 @@ from models import db, User, recipes, recipes_reviews, save
 
 load_dotenv(find_dotenv())
 
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, static_folder= "./build/static" )
 
 # set up a separate route to serve the index.html file generated
 # by create-react-app/npm run build.
@@ -23,15 +24,26 @@ app = flask.Flask(__name__)
 bp = flask.Blueprint(
     "bp",
     __name__,
-    template_folder="./static/react",
+    template_folder="./build",
 )
 
 # route for serving React page
-@bp.route("/edit", methods=["GET", "POST"])
+@bp.route("/index", methods=["GET", "POST"])
 def index():
     # NB: DO NOT add an "index.html" file in your normal templates folder
     # Flask will stop serving this React page correctly
-    return flask.render_template("/static/react/index.html")
+    if not current_user.is_authenticated:
+        return flask.redirect(flask.url_for("home"))
+    user_id = str(current_user.user_id)
+    name = current_user.name
+    img = current_user.img
+    height = current_user.height
+    weight = current_user.weight
+    age = current_user.age
+
+    DATA = {"user_id": user_id, "name": name, "img": img, "height": height, "weight": weight, "age": age}
+    data = json.dumps(DATA)
+    return flask.render_template("index.html", data=data,)
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
@@ -89,7 +101,7 @@ class LoginForm(FlaskForm):
 @app.route("/home")
 def home():
     return render_template(
-        "home.html",
+        "index.html",
     )
 
 
@@ -108,7 +120,7 @@ def about():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for("home"))
+        return redirect(url_for("bp.index"))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode(
@@ -145,9 +157,38 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
+@app.route("/user")
+def user():
+    user_id = str(current_user.user_id)
+    name = current_user.name
+    img = current_user.img
+    height = current_user.height
+    weight = current_user.weight
+    age = current_user.age
+    DATA = {"user_id": user_id, "name": name, "img": img, "height": height, "weight": weight, "age": age}
+    data = json.dumps(DATA)
+    return data
+
+@app.errorhandler(404)
+def not_found(e):
+    if current_user.is_authenticated:
+        return flask.render_template("index.html")
+    print(e)
+    return flask.render_template("index.html")
+
+
 
 app.register_blueprint(bp)
 
-app.run(host=os.getenv("IP", "0.0.0.0"), port=int(os.getenv("PORT", 8080)), debug=True)
+# app.run(host=os.getenv("IP", "0.0.0.0"), port=int(os.getenv("PORT", 8080)), debug=True)
+
+# if __name__ == "__main__":
+#     app.run(
+#         host=os.getenv("IP", "0.0.0.0"),
+#         port=int(os.getenv("PORT", 8080)),
+#         debug=True,
+#     )
+
+app.run()
 
 # does this change work

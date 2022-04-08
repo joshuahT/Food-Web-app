@@ -2,6 +2,7 @@
   "name": "food-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://172.31.101.177:8080",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -42,7 +43,7 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "homepage": "/static/react"
+    ],
+    "homepage": "/static/react"
+  }
 }
