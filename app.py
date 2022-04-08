@@ -37,6 +37,8 @@ def index():
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+APP_ID = os.getenv("APP_ID")
+APP_KEY = os.getenv("APP_KEY")
 
 db.init_app(app)
 with app.app_context():
@@ -140,6 +142,7 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get("next")
             return flask.render_template("index.html")
+            # return flask.render_template("search.html")
         else:
             flash("Login Unsuccessful. Please check email and password", "danger")
     return render_template("login.html", title="Login", form=form)
