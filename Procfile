@@ -1,1 +1,1 @@
-web: python3 app.py
+web: npm start && npm run build && python3 app.py
