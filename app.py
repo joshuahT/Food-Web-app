@@ -48,25 +48,8 @@ def index():
     # Flask will stop serving this React page correctly
     if not current_user.is_authenticated:
         return flask.redirect(flask.url_for("home"))
-    user_id = str(current_user.user_id)
-    name = current_user.name
-    img = current_user.img
-    height = current_user.height
-    weight = current_user.weight
-    age = current_user.age
-
-    DATA = {
-        "user_id": user_id,
-        "name": name,
-        "img": img,
-        "height": height,
-        "weight": weight,
-        "age": age,
-    }
-    data = json.dumps(DATA)
     return flask.render_template(
         "index.html",
-        data=data,
     )
 
 
@@ -238,7 +221,6 @@ def user():
         "gender": gender,
     }
     data = json.dumps(DATA)
-    print(data)
     return data
 
 
