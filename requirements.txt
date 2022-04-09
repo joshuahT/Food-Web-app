@@ -1,0 +1,13 @@
+Flask
+requests
+python-dotenv
+flask-login
+Flask-SQLAlchemy==2.1
+psycopg2-binary
+flask_bcrypt
+flask_wtf
+wtforms
+axios
+styled-components 
+react-router-dom
+react-bootstrap

@@ -267,22 +267,22 @@ def info():
     for i in saveTable:
         saveDict = {}
         saveDict["label"] = i.recipes_name
-        saveDict["ingredient"] = i.ingredients
+        saveDict["ingredient"] = i.ingredientsq
         saveList.append(saveDict)
     return flask.jsonify(saveList)
 
 
 app.register_blueprint(bp)
 
-# app.run(host=os.getenv("IP", "0.0.0.0"), port=int(os.getenv("PORT", 8080)), debug=True)
+app.run(host=os.getenv("IP", "0.0.0.0"), port=int(os.getenv("PORT", 8080)), debug=True)
 
-# if __name__ == "__main__":
-#     app.run(
-#         host=os.getenv("IP", "0.0.0.0"),
-#         port=int(os.getenv("PORT", 8080)),
-#         debug=True,
-#     )
+if __name__ == "__main__":
+    app.run(
+        host=os.getenv("IP", "0.0.0.0"),
+        port=int(os.getenv("PORT", 8080)),
+        debug=True,
+    )
 
-app.run()
+# app.run()
 
 # does this change work
