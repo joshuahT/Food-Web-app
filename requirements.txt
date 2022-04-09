@@ -9,3 +9,4 @@ flask_wtf
 wtforms
 npm
 Werkzeug==2.0.2
+email_validator
