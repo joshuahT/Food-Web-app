@@ -245,9 +245,9 @@ def user():
 @app.errorhandler(404)
 def not_found(e):
     if current_user.is_authenticated:
-        return flask.render_template("index.html")
+        return render_template("index.html")
     print(e)
-    return flask.render_template("index.html")
+    return render_template("index.html")
 
 
 @bp.route("/update", methods=["POST"])

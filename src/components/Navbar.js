@@ -10,8 +10,8 @@ export default function Navigation() {
         Food App
       </Navbar.Brand>
       <Nav>
-        <Nav.Link href="/profile">Profile</Nav.Link>
-        <Nav.Link href="/recipes">Recipe</Nav.Link>
+        <Nav.Link href="/profile" >Profile</Nav.Link>
+        <Nav.Link href="/recipies">Recepies</Nav.Link>
         <Nav.Link href="/logout">Logout</Nav.Link>
       </Nav>
     </Navbar>
