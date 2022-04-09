@@ -206,7 +206,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get("next")
-            return flask.render_template("index.html")
+            return render_template("index.html")
             # return flask.render_template("search.html")
         else:
             flash("Login Unsuccessful. Please check email and password", "danger")
