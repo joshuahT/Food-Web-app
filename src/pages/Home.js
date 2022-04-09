@@ -45,10 +45,28 @@ const RecipeComponent = (props) => {
         <RecipeName>{recipeObj.label}</RecipeName>
         <IngredientsText onClick={() => setPopUp(true)}>Ingredients</IngredientsText>
         <SeeMoreText onClick={() => window.open(recipeObj.url)}>See complete Recipe</SeeMoreText>
+        <button onClick={() => Save(recipeObj)}>Save</button>
       </RecipeContainer>
     </>
   );
 };
+function Save(x) {
+  const saveObj = { label: x.label, ingredient: x.ingredientLines }
+  // saveList.push(x.label)
+  // saveList.push(x.ingredientLines)
+  // console.log(x)
+  // console.log(x.label);
+  // console.log(x.ingredientLines)
+  console.log(saveObj)
+  fetch('/update', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveObj)
+  });
+  alert("Saved to profile!")
+}
 function Home() {
 
   const [timeoutId, updateTimeoutId] = useState();

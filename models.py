@@ -33,6 +33,6 @@ class recipes_reviews(db.Model):
 # drop this table, made an error
 class save(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(999), unique=True)
+    username = db.Column(db.String(999), unique=False)
     recipes_name = db.Column(db.String(999))
     ingredients = db.Column(db.ARRAY(db.String(999)))
