@@ -260,6 +260,18 @@ def updatepage():
     return flask.render_template("index.html")
 
 
+@bp.route("/info", methods=["GET", "POST"])
+def info():
+    saveTable = save.query.filter(save.username == current_user.username)
+    saveList = []
+    for i in saveTable:
+        saveDict = {}
+        saveDict["label"] = i.recipes_name
+        saveDict["ingredient"] = i.ingredients
+        saveList.append(saveDict)
+    return flask.jsonify(saveList)
+
+
 app.register_blueprint(bp)
 
 # app.run(host=os.getenv("IP", "0.0.0.0"), port=int(os.getenv("PORT", 8080)), debug=True)

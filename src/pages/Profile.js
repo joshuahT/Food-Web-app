@@ -6,6 +6,17 @@ import { UserContext } from '../contexts/UserContext'
 
 export default function Profile() {
 
+  const [save, setsave] = useState([]);
+
+  useEffect(() => {
+    fetch('/info')
+      .then(response => response.json())
+      .then(data => {
+        setsave(data);
+        console.log(data)
+      })
+  }, [])
+
   function calculateBMI(weight, height) {
     const num = weight / (height ** 2);
     return num
@@ -38,6 +49,8 @@ export default function Profile() {
     handleClose()
   }, [user])
 
+  console.log(save)
+
   return (
     <>
       <div className="profile">
@@ -64,6 +77,15 @@ export default function Profile() {
         </div>
         <div className='profile--recipes'>
           <h2> Saved Recipes</h2>
+          {save.map((save, index) =>
+            <table>
+              <tr>
+                <span>Recipe Name:{save.label} </span>
+                <span>Ingredient:{save.ingredient}</span>
+              </tr>
+            </table>
+          )
+          }
         </div>
 
       </div>
