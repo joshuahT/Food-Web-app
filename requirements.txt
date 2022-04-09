@@ -7,4 +7,4 @@ psycopg2-binary
 flask_bcrypt
 flask_wtf
 wtforms
-npm
+node
