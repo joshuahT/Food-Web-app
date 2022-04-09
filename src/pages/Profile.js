@@ -4,7 +4,7 @@ import { Modal, Button } from 'react-bootstrap'
 import EditUser from '../components/EditUser'
 import { UserContext } from '../contexts/UserContext'
 
-export default function Profile(props) {
+export default function Profile() {
 
   function calculateBMI(weight, height) {
     const num = weight / (height ** 2);
@@ -42,7 +42,7 @@ export default function Profile(props) {
     <>
       <div className="profile">
         <div className='profile--img--box'>
-          <img className='profile--img' src={profileImg} alt="profile--img" />
+          <img className='profile--img' src={user.img} alt="profile--img" />
         </div>
 
         <div className='profile--container'>

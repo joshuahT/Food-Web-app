@@ -67,3 +67,9 @@ body {
     height: 25px;
     vertical-align: middle;
   }
+
+.collapse-navbar-collapse {
+  background-color: #333;
+  color: white;
+  margin-top: 40px;
+}

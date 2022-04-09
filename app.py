@@ -7,8 +7,8 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, user_logged_in
 from flask_wtf import FlaskForm
 from dotenv import find_dotenv, load_dotenv
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, IntegerField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request
 from models import db, User, recipes, recipes_reviews, save
@@ -72,10 +72,30 @@ class RegistrationForm(FlaskForm):
     username = StringField(
         "Username", validators=[DataRequired(), Length(min=2, max=20)]
     )
+    img_url = StringField(
+        "Profile Pic URL", validators=[DataRequired(), Length(min=2, max=100)]
+    )
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = PasswordField("Password", validators=[DataRequired()])
     confirm_password = PasswordField(
         "Confirm Password", validators=[DataRequired(), EqualTo("password")]
+    )
+    age = IntegerField(
+        "Age", validators=[DataRequired(), NumberRange(min=0, max=110, message=None)]
+    )
+    weight = IntegerField(
+        "Weight (in pounds)", validators=[DataRequired(), NumberRange(min=0, max=300, message=None)]
+    )
+    height = IntegerField(
+        "Height (in centimeters)", validators=[DataRequired(), NumberRange(min=0, max=300, message=None)]
+    )
+    gender = SelectField(
+        'Gender',
+        [DataRequired()],
+        choices=[
+            ('Male', 'Male'),
+            ('Female', 'Female')
+        ]
     )
     submit = SubmitField("Sign Up")
 
@@ -135,7 +155,7 @@ def register():
             "utf-8"
         )
         user = User(
-            username=form.username.data, email=form.email.data, password=hashed_password
+            username=form.username.data, email=form.email.data, password=hashed_password, age=form.age.data, weight=form.weight.data, height=form.height.data, gender=form.gender.data, img_url=form.img_url.data,
         )
         db.session.add(user)
         db.session.commit()
@@ -166,16 +186,18 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
-@app.route("/user")
+@app.route("/user", methods=["POST", "GET"])
 def user():
-    user_id = str(current_user.user_id)
-    name = current_user.name
-    img = current_user.img
+    id = current_user.id
+    username = current_user.username
+    img_url = current_user.img_url
     height = current_user.height
     weight = current_user.weight
     age = current_user.age
-    DATA = {"user_id": user_id, "name": name, "img": img, "height": height, "weight": weight, "age": age}
+    gender = current_user.gender
+    DATA = {"id": id, "username": username, "img_url": img_url, "height": height, "weight": weight, "age": age, "gender": gender}
     data = json.dumps(DATA)
+    print(data)
     return data
 
 @app.errorhandler(404)

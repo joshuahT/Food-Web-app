@@ -25,6 +25,7 @@ body {
   display: flex;
   align-content: center;
   justify-content: center;
+  margin-top: 20px;
   padding: 30px 30px;
   margin: 40px 40px;
   margin-top: 0;
@@ -37,7 +38,7 @@ body {
 }
 
 .profile--img {
-  width: 100px;
+  width: 200px;
 }
 .profile--info-header {
   grid-column: -1 / 1;
@@ -50,10 +51,6 @@ body {
   margin: 40px 40px;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
-}
-
-.profile--info > p {
-  
 }
 
 .profile--recipes {

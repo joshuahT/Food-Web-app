@@ -5,7 +5,7 @@ export const UserContext = createContext()
 const UserContextProvider = (props) => {
 
   const defaultUser = ({
-    user_id: 1,
+    id: 1,
     img: "img",
     name: "John Doe",
     gender: "Male",
@@ -14,18 +14,37 @@ const UserContextProvider = (props) => {
     age: "22"
   })
 
+  const [user, setUser] = useState(defaultUser);
+
   useEffect(() => {
-    fetch("/user").then(
+    fetch("/user", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(
       result => result.json()
     ).then(
       data => {
         console.log(data)
+        setUser(userPrev => {
+          return {
+            ...userPrev,
+            id: data.id,
+            img: data.img_url,
+            name: data.username,
+            gender: data.gender,
+            height: data.height,
+            weight: data.weight,
+            age: data.age
+          }
+        })
       }
     )
-  }
+  }, []
   )
 
-  const [user, setUser] = useState(defaultUser);
+
 
   const updateUser = (updatedUser) => {
     setUser(user => {
