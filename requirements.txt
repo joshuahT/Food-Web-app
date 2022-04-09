@@ -7,6 +7,5 @@ psycopg2-binary
 flask_bcrypt
 flask_wtf
 wtforms
-axios==0.26.1
 react-router-dom
 react-bootstrap
