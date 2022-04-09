@@ -7,5 +7,3 @@ psycopg2-binary
 flask_bcrypt
 flask_wtf
 wtforms
-react-router-dom
-react-bootstrap
