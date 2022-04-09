@@ -1,3 +1,1 @@
-release: npm start
-release: npm run build
-web: python3 app.py
+web: sh -c 'npm start && npm run build && python3 app.py'
