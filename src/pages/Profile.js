@@ -1,4 +1,4 @@
-import profileImg from '../images/profileimg.png'
+// import profileImg from '../images/profileimg.png'
 import { useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import EditUser from '../components/EditUser'
@@ -18,8 +18,10 @@ export default function Profile() {
   }, [])
 
   function calculateBMI(weight, height) {
-    const num = weight / (height ** 2);
-    return num
+    const weightKG = weight / 2.2
+    const heightM = height / 100
+    const num = weightKG / (heightM ** 2)
+    return num.toFixed(2)
   }
 
   function calculateStatus(bmi) {
@@ -37,14 +39,16 @@ export default function Profile() {
   const { user } = useContext(UserContext)
 
 
-  const [bmi, setBMI] = useState(calculateBMI(user.weight, user.height))
-  const [status, setStatus] = useState(calculateStatus(bmi))
+  // const [bmi, setBMI] = useState(calculateBMI(user.weight, user.height))
+  // const [status, setStatus] = useState(calculateStatus(bmi))
 
   const [show, setShow] = useState(false)
 
   const handleShow = () => setShow(true)
   const handleClose = () => setShow(false)
 
+  const [bmi, setBMI] = useState(calculateBMI(user.weight, user.height))
+  const [status, setStatus] = useState(calculateStatus(bmi))
   useEffect(() => {
     handleClose()
   }, [user])
@@ -55,7 +59,7 @@ export default function Profile() {
     <>
       <div className="profile">
         <div className='profile--img--box'>
-          <img className='profile--img' src={user.img} alt="profile--img" />
+          <img className='profile--img' src={user.img} alt="profile--img" width="150" height="150" />
         </div>
 
         <div className='profile--container'>
@@ -64,14 +68,16 @@ export default function Profile() {
         <div className='profile--info'>
           <h1 className='profile--info-header'> Personal Info</h1>
           <div>
-            <p>Height: {user.height}</p>
+            <p>Height: {user.height}cm</p>
             <p>Weight: {user.weight}Ibs</p>
             <p>Gender: {user.gender}</p>
             <p>Age: {user.age}</p>
           </div>
           <div>
-            <p>BMI: {bmi}</p>
-            <p>Status: {status}</p>
+            {/* <p>BMI: {bmi}</p> */}
+            <p>BMI: {calculateBMI(user.weight, user.height)}</p>
+            {/* <p>Status: {status}</p> */}
+            <p>Status: {calculateStatus(calculateBMI(user.weight, user.height))}</p>
           </div>
           <Button onClick={handleShow} variant="primary">Edit Info</Button>
         </div>

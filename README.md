@@ -1,6 +1,9 @@
-To run the app, 
-Run npm start, but before you guys run the app, please install something according to these command: 
+To run the app, enter the command: python3 app.py
 
+Heroku link of the app: 
+https://fathomless-harbor-50275.herokuapp.com/home
+
+files to install: 
 npm install
 (Detail in : https://www.npmjs.com/package/@mui/material)
 

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
-import Dialog from '@mui/material/Dialog';
-import { useState } from 'react';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogActions from '@mui/material/DialogActions';
+// import DialogTitle from '@mui/material/DialogTitle';
+// import Dialog from '@mui/material/Dialog';
+// import { useState } from 'react';
 
 
 
@@ -56,6 +56,18 @@ export const SeeMoreText = styled.span`
   border-radius: 5px;
   color: red;
   text-align: center;
+  margin-bottom: 10px;
+`;
+
+export const SaveButton = styled.span`
+  font-size: 18px;
+  border: solid 1px black;
+  color: black;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: black;
+  text-align: center;
 `;
 
 export const Placeholder = styled.img`
@@ -64,35 +76,35 @@ export const Placeholder = styled.img`
     margin: 200px;
 `;
 
-export function RecipeComponent(props) {
+// export function RecipeComponent(props) {
 
-  const [popUp, setPopUp] = useState(false);
-  const { recipeObj } = props;
-  return (
-    <>
-      <Dialog open={popUp}>
-        <DialogTitle>Ingredients</DialogTitle>
-        <DialogContent>
-          <table>
-            <tbody>
-              {recipeObj.ingredients.map((ingredientObj) => (
-                <tr>
-                  <td>{ingredientObj.text}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </DialogContent>
-        <DialogActions>
-          <SeeMoreText onClick={() => setPopUp("")}>Close</SeeMoreText>
-        </DialogActions>
-      </Dialog>
-      <RecipeContainer>
-        <CoverImage src={recipeObj.image} />
-        <RecipeName>{recipeObj.label}</RecipeName>
-        <IngredientsText onClick={() => setPopUp(true)}>Ingredients</IngredientsText>
-        <SeeMoreText onClick={() => window.open(recipeObj.url)}>See complete Recipe</SeeMoreText>
-      </RecipeContainer>
-    </>
-  );
-};
+//   const [popUp, setPopUp] = useState(false);
+//   const { recipeObj } = props;
+//   return (
+//     <>
+//       <Dialog open={popUp}>
+//         <DialogTitle>Ingredients</DialogTitle>
+//         <DialogContent>
+//           <table>
+//             <tbody>
+//               {recipeObj.ingredients.map((ingredientObj) => (
+//                 <tr>
+//                   <td>{ingredientObj.text}</td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+//         </DialogContent>
+//         <DialogActions>
+//           <SeeMoreText onClick={() => setPopUp("")}>Close</SeeMoreText>
+//         </DialogActions>
+//       </Dialog>
+//       <RecipeContainer>
+//         <CoverImage src={recipeObj.image} />
+//         <RecipeName>{recipeObj.label}</RecipeName>
+//         <IngredientsText onClick={() => setPopUp(true)}>Ingredients</IngredientsText>
+//         <SeeMoreText onClick={() => window.open(recipeObj.url)}>See complete Recipe</SeeMoreText>
+//       </RecipeContainer>
+//     </>
+//   );
+// };

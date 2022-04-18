@@ -29,7 +29,10 @@ from models import db, User, recipes, recipes_reviews, save
 
 load_dotenv(find_dotenv())
 
+
 app = flask.Flask(__name__, static_folder="./build/static")
+# app = flask.Flask(__name__)
+
 
 # set up a separate route to serve the index.html file generated
 # by create-react-app/npm run build.
@@ -40,6 +43,7 @@ bp = flask.Blueprint(
     __name__,
     template_folder="./build",
 )
+app.register_blueprint(bp)
 
 # route for serving React page
 @bp.route("/index", methods=["GET", "POST"])
@@ -257,8 +261,6 @@ def info():
         saveList.append(saveDict)
     return flask.jsonify(saveList)
 
-
-app.register_blueprint(bp)
 
 # app.run(host=os.getenv("IP", "0.0.0.0"), port=int(os.getenv("PORT", 8080)), debug=True)
 
