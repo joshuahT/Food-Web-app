@@ -18,8 +18,10 @@ export default function Profile() {
   }, [])
 
   function calculateBMI(weight, height) {
-    const num = weight / (height ** 2);
-    return num
+    const weightKG = weight / 2.2
+    const heightM = height / 100
+    const num = weightKG / (heightM ** 2)
+    return num.toFixed(2)
   }
 
   function calculateStatus(bmi) {
@@ -70,8 +72,8 @@ export default function Profile() {
             <p>Age: {user.age}</p>
           </div>
           <div>
-            <p>BMI: {bmi}</p>
-            <p>Status: {status}</p>
+            <p>BMI: {calculateBMI(user.weight, user.height)}</p>
+            <p>Status: {calculateStatus(calculateBMI(user.weight, user.height))}</p>
           </div>
           <Button onClick={handleShow} variant="primary">Edit Info</Button>
         </div>

@@ -56,12 +56,25 @@ export const SeeMoreText = styled.span`
   border-radius: 5px;
   color: red;
   text-align: center;
+  margin-bottom: 10px;
 `;
 
 export const Placeholder = styled.img`
     width: 240px;
     height: 240px;
     margin: 200px;
+`;
+
+export const SaveButton = styled.span`
+  font-size: 18px;
+  border: solid 1px black;
+  color: black;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: black;
+  text-align: center;
+  margin-bottom: 10px;
 `;
 
 export function RecipeComponent(props) {

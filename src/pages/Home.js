@@ -5,6 +5,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
+import searchBar from '../images/search-icon.svg'
+import foodLogo from '../images/food-app-icon.png'
 // import { Placeholder } from 'react-bootstrap';
 import {
   RecipeContainer,
@@ -13,7 +15,8 @@ import {
   RecipeName,
   IngredientsText,
   SeeMoreText,
-  Placeholder
+  Placeholder,
+  SaveButton
 } from "../components/RecipeComponent";
 
 
@@ -45,7 +48,9 @@ const RecipeComponent = (props) => {
         <RecipeName>{recipeObj.label}</RecipeName>
         <IngredientsText onClick={() => setPopUp(true)}>Ingredients</IngredientsText>
         <SeeMoreText onClick={() => window.open(recipeObj.url)}>See complete Recipe</SeeMoreText>
-        <button onClick={() => Save(recipeObj)}>Save</button>
+        <SaveButton onClick={() => Save(recipeObj)}>Save</SaveButton>
+        {/* <button onClick={() => Save(recipeObj)}>Save</button> */}
+
       </RecipeContainer>
     </>
   );
@@ -86,15 +91,16 @@ function Home() {
   };
 
   return (
-    <div className="home">
+    <div className="home" align="center">
       <h1>Home Page</h1>
-      <img src="/search-icon.svg" />
+      <br></br>
+      <img src={searchBar} />
       <input placeholder="Search Recipe" onChange={onTextChange} />
       <RecipeListContainer>
         {reciptList.length ?
           reciptList.map((recipeObj) => (
             <RecipeComponent recipeObj={recipeObj.recipe} />
-          )) : <Placeholder src="food-app-icon.png" />}
+          )) : <Placeholder src={foodLogo} />}
       </RecipeListContainer>
     </div>
   )
