@@ -6,6 +6,7 @@ db = SQLAlchemy()
 
 # drop this table, made an error
 class User(UserMixin, db.Model):
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(999), unique=True)
     email = db.Column(db.String(999), unique=True)

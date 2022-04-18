@@ -1,6 +1,5 @@
 import os
 import flask
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import json
 from flask_bcrypt import Bcrypt
