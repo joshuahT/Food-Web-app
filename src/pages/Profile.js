@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import EditUser from '../components/EditUser'
 import { UserContext } from '../contexts/UserContext'
+import { RecipeComponent, RecipeListContainer } from '../components/RecipeComponent'
 
 export default function Profile() {
 
@@ -53,6 +54,7 @@ export default function Profile() {
 
   console.log(save)
 
+
   return (
     <>
       <div className="profile">
@@ -78,16 +80,13 @@ export default function Profile() {
           <Button onClick={handleShow} variant="primary">Edit Info</Button>
         </div>
         <div className='profile--recipes'>
-          <h2> Saved Recipes</h2>
-          {save.map((save, index) =>
-            <table>
-              <tr>
-                <span>Recipe Name:{save.label} </span>
-                <span>Ingredient:{save.ingredient}</span>
-              </tr>
-            </table>
-          )
-          }
+          <h2 text-align="center" padding='100px'> Saved Recipes</h2>
+          <RecipeListContainer>
+            {save.map((save) => (
+              <RecipeComponent recipeObj={save} />
+            ))}
+          </RecipeListContainer>
+
         </div>
 
       </div>

@@ -56,7 +56,7 @@ const RecipeComponent = (props) => {
   );
 };
 function Save(x) {
-  const saveObj = { label: x.label, ingredient: x.ingredientLines }
+  const saveObj = { label: x.label, ingredient: x.ingredientLines, image: x.image, url: x.url }
   // saveList.push(x.label)
   // saveList.push(x.ingredientLines)
   // console.log(x)
@@ -82,6 +82,7 @@ function Home() {
       `https://api.edamam.com/api/recipes/v2?type=public&q=${searchString}&app_id=${process.env.REACT_APP_APP_ID}&app_key=${process.env.REACT_APP_APP_KEY}&random=true`
     );
     updateReciptList(response.data.hits);
+    console.log(response.data.hits)
   };
 
   const onTextChange = (event) => {

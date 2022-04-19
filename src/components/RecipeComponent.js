@@ -88,11 +88,9 @@ export function RecipeComponent(props) {
         <DialogContent>
           <table>
             <tbody>
-              {recipeObj.ingredients.map((ingredientObj) => (
-                <tr>
-                  <td>{ingredientObj.text}</td>
-                </tr>
-              ))}
+              <tr>
+                <td>Ingredient:{recipeObj.ingredient}</td>
+              </tr>
             </tbody>
           </table>
         </DialogContent>
