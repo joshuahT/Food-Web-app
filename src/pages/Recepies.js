@@ -51,7 +51,8 @@ const RecipeComponent = (props) => {
   );
 };
 function Save(x) {
-  const saveObj = { label: x.label, ingredient: x.ingredientLines }
+
+  const saveObj = { label: x.label, ingredient: x.ingredientLines, image: x.image, url: x.url }
   console.log(saveObj)
   fetch('/update', {
     method: 'POST',
