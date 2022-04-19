@@ -37,3 +37,5 @@ class save(db.Model):
     username = db.Column(db.String(999), unique=False)
     recipes_name = db.Column(db.String(999))
     ingredients = db.Column(db.ARRAY(db.String(999)))
+    image = db.Column(db.String(10000))
+    url = db.Column(db.String(10000))

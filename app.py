@@ -238,6 +238,8 @@ def updatepage():
         username=current_user.username,
         recipes_name=data["label"],
         ingredients=data["ingredient"],
+        image=data["image"],
+        url=data["url"],
     )
     print(data["label"])
     db.session.add(currElements)
@@ -253,6 +255,8 @@ def info():
         saveDict = {}
         saveDict["label"] = i.recipes_name
         saveDict["ingredient"] = i.ingredients
+        saveDict["image"] = i.image
+        saveDict["url"] = i.url
         saveList.append(saveDict)
     return flask.jsonify(saveList)
 
