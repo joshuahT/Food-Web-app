@@ -1,11 +1,21 @@
+"""
+import
+"""
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
+# pylint: disable=no-member
+# pylint: disable=invalid-name
+# pylint: disable=too-few-public-methods
 
 db = SQLAlchemy()
 
 # drop this table, made an error
 class User(UserMixin, db.Model):
+    """
+    Table for user
+    """
+
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(999), unique=True)
@@ -18,21 +28,21 @@ class User(UserMixin, db.Model):
     gender = db.Column(db.String(999))
 
 
-class recipes(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    recipes_name = db.Column(db.String(999))
-    ingredients = db.Column(db.ARRAY(db.String(999)))
+# class recipes(db.Model):
+#     """
+#     class for table recipes
+#     """
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     recipes_name = db.Column(db.String(999))
+#     ingredients = db.Column(db.ARRAY(db.String(999)))
 
 
-class recipes_reviews(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    recipes_name = db.Column(db.String(999))
-    comments = db.Column(db.String(999))
-    ratings = db.Column(db.Integer)
-
-
-# drop this table, made an error
 class save(db.Model):
+    """
+    class for saved-recipes table
+    """
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(999), unique=False)
     recipes_name = db.Column(db.String(999))

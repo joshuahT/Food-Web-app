@@ -59,7 +59,11 @@ export default function Profile() {
     <>
       <div className="profile">
         <div className='profile--img--box'>
-          <img className='profile--img' src={user.img} alt="profile--img" />
+          <img
+            className='profile--img'
+            src={user.img}
+            alt="profile--img"
+            onError={(e) => { e.target.src = profileImg }} />
         </div>
 
         <div className='profile--container'>
