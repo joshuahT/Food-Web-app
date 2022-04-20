@@ -1,9 +1,16 @@
+"""
+run python3 app.py to run the app
+"""
+# pylint: disable=ungrouped-imports
+# pylint: disable=maybe-no-member
+# pylint: disable=redefined-outer-name
+# pylint: disable=no-self-use
 import os
+import json
 import flask
 from flask_sqlalchemy import SQLAlchemy
-import json
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, user_logged_in
+from flask_login import LoginManager
 from flask_wtf import FlaskForm
 from dotenv import find_dotenv, load_dotenv
 from wtforms import (
@@ -22,9 +29,9 @@ from wtforms.validators import (
     ValidationError,
     NumberRange,
 )
-from flask_login import login_user, current_user, logout_user, login_required
-from flask import render_template, url_for, flash, redirect, request
-from models import db, User, recipes, recipes_reviews, save
+from flask_login import login_user, current_user, logout_user
+from flask import render_template, url_for, flash, redirect
+from models import db, User, save
 
 load_dotenv(find_dotenv())
 
@@ -43,8 +50,10 @@ bp = flask.Blueprint(
 # route for serving React page
 @bp.route("/index", methods=["GET", "POST"])
 def index():
-    # NB: DO NOT add an "index.html" file in your normal templates folder
-    # Flask will stop serving this React page correctly
+    """
+    NB: DO NOT add an "index.html" file in your normal templates folder
+    Flask will stop serving this React page correctly
+    """
     if not current_user.is_authenticated:
         return flask.redirect(flask.url_for("home"))
     return flask.render_template(
@@ -75,10 +84,17 @@ login_manager.login_message_category = "info"
 
 @login_manager.user_loader
 def load_user(user_id):
+    """
+    user load
+    """
     return User.query.get(int(user_id))
 
 
 class RegistrationForm(FlaskForm):
+    """
+    registration form
+    """
+
     username = StringField(
         "Username", validators=[DataRequired(), Length(min=2, max=20)]
     )
@@ -107,6 +123,9 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField("Sign Up")
 
     def validate_username(self, username):
+        """
+        check if username is taken
+        """
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError(
@@ -114,12 +133,19 @@ class RegistrationForm(FlaskForm):
             )
 
     def validate_email(self, email):
+        """
+        check if email is taken
+        """
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError("That email is taken. Please choose a different one.")
 
 
 class LoginForm(FlaskForm):
+    """
+    login form
+    """
+
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = PasswordField("Password", validators=[DataRequired()])
     remember = BooleanField("Remember Me")
@@ -128,6 +154,9 @@ class LoginForm(FlaskForm):
 
 @app.route("/")
 def redirectreact():
+    """
+    redirect function
+    """
     if current_user.is_authenticated:
         return render_template("index.html")
     return render_template("home.html")
@@ -135,6 +164,9 @@ def redirectreact():
 
 @app.route("/home")
 def home():
+    """
+    home page
+    """
     return render_template(
         "home.html",
     )
@@ -142,6 +174,9 @@ def home():
 
 @app.route("/main")
 def main():
+    """
+    main page
+    """
     return render_template(
         "main.html",
     )
@@ -149,11 +184,17 @@ def main():
 
 @app.route("/about")
 def about():
+    """
+    about page
+    """
     return render_template("about.html", title="About")
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    register function
+    """
     if current_user.is_authenticated:
         return redirect(url_for("bp.index"))
     form = RegistrationForm()
@@ -180,6 +221,9 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    login function
+    """
     if current_user.is_authenticated:
         return redirect(url_for("home"))
     form = LoginForm()
@@ -187,31 +231,36 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
-            next_page = request.args.get("next")
+            # next_page = request.args.get("next")
             return render_template("index.html")
             # return flask.render_template("search.html")
-        else:
-            flash("Login Unsuccessful. Please check email and password", "danger")
+        flash("Login Unsuccessful. Please check email and password", "danger")
     return render_template("login.html", title="Login", form=form)
 
 
 @app.route("/logout")
 def logout():
+    """
+    log out function
+    """
     logout_user()
     return redirect(url_for("home"))
 
 
 @app.route("/user", methods=["POST", "GET"])
 def user():
-    id = current_user.id
+    """
+    user information return in json
+    """
+    user_id = current_user.id
     username = current_user.username
     img_url = current_user.img_url
     height = current_user.height
     weight = current_user.weight
     age = current_user.age
     gender = current_user.gender
-    DATA = {
-        "id": id,
+    data_json = {
+        "id": user_id,
         "username": username,
         "img_url": img_url,
         "height": height,
@@ -219,22 +268,28 @@ def user():
         "age": age,
         "gender": gender,
     }
-    data = json.dumps(DATA)
+    data = json.dumps(data_json)
     return data
 
 
 @app.errorhandler(404)
-def not_found(e):
+def not_found(error):
+    """
+    error catch
+    """
     if current_user.is_authenticated:
         return render_template("index.html")
-    print(e)
+    print(error)
     return render_template("index.html")
 
 
 @bp.route("/update", methods=["POST"])
 def updatepage():
+    """
+    update info function
+    """
     data = flask.request.get_json()
-    currElements = save(
+    curr_elements = save(
         username=current_user.username,
         recipes_name=data["label"],
         ingredients=data["ingredient"],
@@ -242,33 +297,35 @@ def updatepage():
         url=data["url"],
     )
     print(data["label"])
-    db.session.add(currElements)
+    db.session.add(curr_elements)
     db.session.commit()
     return flask.render_template("index.html")
 
 
 @bp.route("/info", methods=["GET", "POST"])
 def info():
-    saveTable = save.query.filter(save.username == current_user.username)
-    saveList = []
-    for i in saveTable:
-        saveDict = {}
-        saveDict["label"] = i.recipes_name
-        saveDict["ingredient"] = i.ingredients
-        saveDict["image"] = i.image
-        saveDict["url"] = i.url
-        saveList.append(saveDict)
-    return flask.jsonify(saveList)
+    """
+    recipe save function
+    """
+    save_table = save.query.filter(save.username == current_user.username)
+    save_list = []
+    for i in save_table:
+        save_dict = {}
+        save_dict["label"] = i.recipes_name
+        save_dict["ingredient"] = i.ingredients
+        save_dict["image"] = i.image
+        save_dict["url"] = i.url
+        save_list.append(save_dict)
+    return flask.jsonify(save_list)
 
 
 app.register_blueprint(bp)
 
-# app.run(host=os.getenv("IP", "0.0.0.0"), port=int(os.getenv("PORT", 8080)), debug=True)
 
 if __name__ == "__main__":
     app.run(
         host=os.getenv("IP", "0.0.0.0"),
-        port=int(os.getenv("PORT", 8080)),
+        port=int(os.getenv("PORT", "8080")),
         debug=True,
     )
 

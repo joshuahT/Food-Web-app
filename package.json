@@ -45,5 +45,11 @@
       "last 1 safari version"
     ],
     "homepage": "/static/react"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.13.0",
+    "eslint-plugin-react": "^7.29.4"
   }
 }
