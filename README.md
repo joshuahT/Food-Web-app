@@ -1,4 +1,4 @@
-To run the app, enter the command: `python3 app.py`
+To run the app, enter the command: `npm run build` then `python3 app.py`
 
 
 # Heroku link of the app: 
