@@ -60,8 +60,8 @@ export const SeeMoreText = styled.span`
 `;
 
 export const Placeholder = styled.img`
-    width: 240px;
-    height: 240px;
+    width: 500px;
+    height: 500px;
     margin: 200px;
 `;
 

@@ -9,16 +9,19 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
   {% if title %}
-  <title>Food App - {{ title }}</title>
+  <title>Recipe Book - {{ title }}</title>
   {% else %}
-  <title>Food App</title>
+  <title>Recipe Book</title>
   {% endif %}
-  <link href='https://fonts.googleapis.com/css?family=Allura' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Poppins&family=Square+Peg&display=swap" rel="stylesheet">
   <style>
+    .layout--container {
+      margin-top: 150px;
+    }
     p.a {
       font-family: 'Allura';
       font-size: 52px;
-      text-align: right;
+      text-align: center;
       color: black;
       font-style: bold;
     }
@@ -26,30 +29,30 @@
     p.b {
       font-family: Georgia, 'Times New Roman', Times, serif;
       font-size: 25px;
-      text-align: right;
+      text-align: center;
       color: black;
     }
 
     body {
       background-color: rgb(218, 246, 255);
     }
+    .row {
+      justify-content: center;
+    }
   </style>
 </head>
 
 <body>
-  <p class="a">Welcome To Our Food App</p>
-  <p class="b">First Time here?...Please Sign Up, Otherwise Go ahead and Login In !</p>
   <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
       <div class="container">
-        <a class="navbar-brand mr-4" href="/">Food App</a>
+        <a class="navbar-brand mr-4" href="/">Recipe Book</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
           aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggle">
           <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
             <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
             <!-- Navbar Right Side -->
             {% if current_user.is_authenticated %}
@@ -63,6 +66,9 @@
       </div>
     </nav>
   </header>
+  <div class="layout--container">
+
+  </div>
   <main role="main" class="container">
     <div class="row">
       <div class="col-md-8">

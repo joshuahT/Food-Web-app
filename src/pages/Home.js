@@ -7,6 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import searchBar from '../images/search-icon.svg'
 import foodLogo from '../images/food-app-icon.png'
+// import { useNavigate } from "react-router-dom";
 // import { Placeholder } from 'react-bootstrap';
 import {
   RecipeContainer,
@@ -24,6 +25,7 @@ import {
 const RecipeComponent = (props) => {
   const [popUp, setPopUp] = useState(false);
   const { recipeObj } = props;
+
   return (
     <>
       <Dialog open={popUp}>
@@ -91,13 +93,19 @@ function Home() {
     updateTimeoutId(timeout);
   };
 
+  // let navigate = useNavigate();
+  // const routeChange = () => {
+  //   let path = `recipes`;
+  //   navigate(path);
+  // }
+
   return (
-    <div className="home" align="center">
-      <h1>Home Page</h1>
+    <div className="home--container" align="center">
+      <h1>Welcome!</h1>
       <br></br>
       <img src={searchBar} />
       <input placeholder="Search Recipe" onChange={onTextChange} />
-      <RecipeListContainer>
+      <RecipeListContainer className='recipe-container'>
         {reciptList.length ?
           reciptList.map((recipeObj) => (
             <RecipeComponent recipeObj={recipeObj.recipe} />

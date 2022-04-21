@@ -4,35 +4,54 @@
 
 <head>
     <style>
+        .about--wrapper {
+            border-radius: 25px;
+            background-color: #5f788a;
+            padding: 150px;
+            padding-top: 100px;
+            color: white;
+        }
         p.c {
             font-family: 'Allura';
-            font-size: 30px;
-            text-align: left;
-            color: black;
+            font-size: 50px;
+            text-align: Center;
+            
+            font-weight: 400;
         }
 
         p.d {
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 25px;
             text-align: left;
-            color: black;
+        }
+        .names {
+            font-family: 'Square Peg', cursive;
+            font-size: 40px;
+            font-weight: bolder;
+            text-align: left;
         }
     </style>
 </head>
 
 <body>
     <br></br>
-    <p class="c">About Our Food App</p>
-    <p class="d">Our app can search food based on its name, category, area, ingredient, etc. Also our app will provide
-        specific
-        recipe for each food. Our app can help calculate users' BMI value. Users can edit their information at any time.
-    </p>
-    <br></br>
-    <p class="c">Who It Is Made By</p>
-    <p class="d">Joshuah Tang</p>
-    <p class="d">Zo Lightfoot</p>
-    <p class="d">Batt Benoit Somoko Balantpli</p>
-    <p class="d">Junqiang Chen</p>
+    <div class="about--wrapper">
+        <p class="c">About Our Recipe Book</p>
+        <p class="d">Our app can search food based on its name, category, area, ingredient, etc. Also our app will provide
+            specific
+            recipe for each food. Our app can help calculate users' BMI value. Users can edit their information at any time.
+            This makes our Recipe Book an optimal application for users that want to save healthy recipes for later use!
+        </p>
+        <br></br>
+        <p class="c">Who It Is Made By</p>
+        <div class="names">    
+            <p >Joshuah Tang</p>
+            <p >Zo Lightfoot</p>
+            <p >Batt Benoit Somoko Balantpli</p>
+            <p >Junqiang Chen</p>    
+        </div>
+    </div>
+    
 
 </body>
 {% endblock content %}

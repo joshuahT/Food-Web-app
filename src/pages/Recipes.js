@@ -40,7 +40,7 @@ const RecipeComponent = (props) => {
           <SeeMoreText onClick={() => setPopUp("")}>Close</SeeMoreText>
         </DialogActions>
       </Dialog>
-      <RecipeContainer>
+      <RecipeContainer className='recipe-container'>
         <CoverImage src={recipeObj.image} />
         <RecipeName>{recipeObj.label}</RecipeName>
         <IngredientsText onClick={() => setPopUp(true)}>Ingredients</IngredientsText>
@@ -63,7 +63,7 @@ function Save(x) {
   });
   alert("Saved to profile!")
 }
-function Recepies() {
+function Recipes() {
   const [reciptList, updateReciptList] = useState([]);
   const fetchRecipe = async () => {
     const response = await Axios.get(
@@ -76,9 +76,8 @@ function Recepies() {
     fetchRecipe()
   }, [])
   return (
-    <div className="recepies" align="center">
+    <div className="recipe-page" align="center">
       <h1>Random Recipe Page</h1>
-      <br></br>
       <RecipeListContainer>
         {reciptList.length ?
           reciptList.map((recipeObj) => (
@@ -89,4 +88,4 @@ function Recepies() {
   )
 }
 
-export default Recepies;
+export default Recipes;

@@ -5,6 +5,30 @@
 body {
   margin: 0;
   font-family: Poppins, sans-serif;
+  background-color: rgb(218, 246, 255);
+}
+
+.bg-myBlue {
+  background-color: #5f788a;
+}
+
+.nav--container {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+.nav--brand {
+  margin-left: 28.3%;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 25px;
+}
+
+.nav--text_container {
+  align-items: center;
+  font-size: 19px;
+  margin-left: 14px;
+  color: white;
 }
 
 .content {
@@ -16,22 +40,39 @@ body {
   margin-right: 10px;
 }
 
+.home--logo {
+  width: 500px;
+}
+
+.home--container > h1 {
+  font-family: 'Allura';
+  font-size: 75px;
+  text-align: center;
+  margin-top: 150px;
+}
+
 .profile {
   margin-top: 100px;
 }
 
+.profile > p {
+  font-size: 32px;
+}
+
 .profile--container {
-  background-color: rgba(0, 0, 0, 0.363);
+  font-family: 'Allura';
+  color: black;
   display: flex;
+  font-size: 75px;
   align-content: center;
   justify-content: center;
-  margin-top: 20px;
   padding: 30px 30px;
+  margin-top: 5px;
   margin: 40px 40px;
-  margin-top: 0;
 }
 
 .profile--img--box {
+  margin-top: 10px;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -44,21 +85,47 @@ body {
   grid-column: -1 / 1;
 }
 
+.profile--recipe-header {
+  grid-column: -1 / 1;
+}
+
 .profile--info {
-  background-color: rgba(0, 0, 0, 0.363);
+  border-style: groove;
+  border-radius: 25px;
+  background-color: #5f788a;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: black;
   display: grid;
   padding: 30px 30px;
   margin: 40px 40px;
+  margin-bottom: 0;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
 }
 
 .profile--recipes {
-  background-color: rgba(0, 0, 0, 0.363);
-  display: flex;
+  border-style: groove;
+  border-radius: 25px;
+  background-color: #5f788a;
+  display: grid;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: black;
   align-content: center;
   justify-content: center;
+  grid-template-columns: 1fr;
   padding: 30px 30px;
   margin: 40px 40px;
-  margin-top: 0;
+  margin-top: 30px;
+  place-items: center;
+}
+
+.recipe-page{
+  margin-top: 100px;
+  font-family: 'Allura';
+  font-size: 75px;
+}
+
+.recipe-container {
+  background-color: #5f788a;
+  border-radius: 25px;
 }

@@ -84,13 +84,14 @@ export default function Profile() {
           <Button onClick={handleShow} variant="primary">Edit Info</Button>
         </div>
         <div className='profile--recipes'>
-          <h2 text-align="center" padding='100px'> Saved Recipes</h2>
-          <RecipeListContainer>
-            {save.map((save) => (
-              <RecipeComponent recipeObj={save} />
-            ))}
-          </RecipeListContainer>
-
+          <h1 className='profile--recipe-header'> Saved Recipes</h1>
+          <div>
+            <RecipeListContainer>
+              {save.map((save) => (
+                <RecipeComponent recipeObj={save} />
+              ))}
+            </RecipeListContainer>
+          </div>
         </div>
 
       </div>

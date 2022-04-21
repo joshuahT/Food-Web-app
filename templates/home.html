@@ -1,15 +1,36 @@
 {% extends "layout.html" %}
 {% block content %}
-{% for post in posts %}
-<article class="media content-section">
-  <div class="media-body">
-    <div class="article-metadata">
-      <a class="mr-2" href="#">{{ post.author }}</a>
-      <small class="text-muted">{{ post.date_posted }}</small>
-    </div>
-    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-    <p class="article-content">{{ post.content }}</p>
+<html>
+
+<head>
+  <style>
+    .welcome-text {
+      display: grid;
+      justify-content: center;
+      align-content: center;
+      grid-template-columns: 1fr;
+    }
+    p.a {
+      font-family: 'Allura';
+      font-size: 70px;
+      text-align: Center;
+      color: black;
+    }
+    p.d {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 15px;
+      text-align: left;
+      color: black;
+    }
+    </style>
+</head>
+
+<body>
+  <div class="welcome-text">
+    <p class="a">Welcome To Our Recipe Book</p>
+    <p class="b">First Time here?...Please Sign Up, Otherwise Go ahead and Login In !</p>
   </div>
-</article>
-{% endfor %}
+</body>
 {% endblock content %}
+
+</html>
