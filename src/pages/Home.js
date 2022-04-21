@@ -45,7 +45,7 @@ const RecipeComponent = (props) => {
           <SeeMoreText onClick={() => setPopUp("")}>Close</SeeMoreText>
         </DialogActions>
       </Dialog>
-      <RecipeContainer>
+      <RecipeContainer className='recipe-container'>
         <CoverImage src={recipeObj.image} />
         <RecipeName>{recipeObj.label}</RecipeName>
         <IngredientsText onClick={() => setPopUp(true)}>Ingredients</IngredientsText>
@@ -105,7 +105,7 @@ function Home() {
       <br></br>
       <img src={searchBar} />
       <input placeholder="Search Recipe" onChange={onTextChange} />
-      <RecipeListContainer className='recipe-container'>
+      <RecipeListContainer >
         {reciptList.length ?
           reciptList.map((recipeObj) => (
             <RecipeComponent recipeObj={recipeObj.recipe} />

@@ -52,7 +52,7 @@ body {
 }
 
 .profile {
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 .profile > p {
@@ -70,6 +70,12 @@ body {
   margin-top: 5px;
   margin: 40px 40px;
 }
+
+.profile--container > h1 {
+  font-size: 75px;
+}
+
+
 
 .profile--img--box {
   margin-top: 10px;
@@ -120,8 +126,12 @@ body {
 }
 
 .recipe-page{
-  margin-top: 100px;
+  margin-top: 150px;
   font-family: 'Allura';
+  font-size: 75px;
+}
+
+.recipe-page > h1{
   font-size: 75px;
 }
 
