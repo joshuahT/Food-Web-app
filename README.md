@@ -1,3 +1,7 @@
+# ABOUT OUR APP
+Our app can search food based on its name, category, area, ingredient, etc. Also our app will provide specific recipe for each food. Our app can help calculate users' BMI value. Users can edit their information at any time. This makes our Recipe Book an optimal application for users that want to save healthy recipes for later use!
+
+
 To run the app, enter the command: `npm run build` then `python3 app.py`
 
 
